@@ -4,4 +4,5 @@ import com.example.domain.CharacterDomain
 
 interface CharactersRepository {
     suspend fun getCharacters(): List<CharacterDomain>
+    suspend fun refreshCharacters()
 }
