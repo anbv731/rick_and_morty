@@ -1,8 +1,11 @@
 package com.example.data.network
 
-import com.example.data.database.CharacterModel
+import com.example.data.database.CharacterModel 
 import com.squareup.moshi.Json
-
+data class Response constructor(
+    @Json(name="results")
+    val results: List<CharacterDto>,
+)
 data class CharacterDto constructor(
     @Json(name = "name")
     val name: String,

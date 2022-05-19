@@ -2,9 +2,12 @@ package com.example.data
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.example.data.database.CharactersDataBase
 import com.example.data.database.asDomainModel
 import com.example.data.database.getDatabase
+
 import com.example.data.network.CharacterDto
 import com.example.data.network.NetworkService
 import com.example.data.network.RetrofitClient
@@ -16,18 +19,20 @@ import kotlinx.coroutines.withContext
 
 class CharactersRepositoryImpl(
     private val context:Context,
-
-   //private val database: CharactersDataBase
 ) : CharactersRepository {
+    private val database = getDatabase(context)
+
 
     override suspend fun refreshCharacters() {
         withContext(Dispatchers.IO) {
             val characters = RetrofitClient().getApi().getData()
-            getDatabase(context).charactersDao.insertAll(characters.asModel())
+            database.charactersDao.insertAll(characters.asModel())
         }
     }
 
-    override suspend fun getCharacters(): List<CharacterDomain> {
-        return RetrofitClient().getApi().getData().asModel().asDomainModel()
+    override suspend fun getDBCharacters(): List<CharacterDomain> {
+
+        return database.charactersDao.getCharacters().asDomainModel()
     }
+
 }
