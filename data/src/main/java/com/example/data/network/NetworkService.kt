@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface NetworkService  {
     @GET("character")
-    suspend fun getData(): List<CharacterDto>
+    suspend fun getData(): Response
 }

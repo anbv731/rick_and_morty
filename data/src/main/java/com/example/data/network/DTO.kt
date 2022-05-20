@@ -11,16 +11,7 @@ data class CharacterDto constructor(
     val name: String,
     @Json(name = "id")
     val id: String
-) {
-    companion object {
-        fun dtoToModel(characterDto: CharacterDto): CharacterModel {
-            return CharacterModel(
-                name = characterDto.name,
-                id = characterDto.id
-            )
-        }
-    }
-}
+)
 fun List<CharacterDto>.asModel(): List<CharacterModel> {
     return map {
         CharacterModel(

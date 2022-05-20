@@ -31,6 +31,7 @@ class CharactersFragment: Fragment() {
         binding= CharactersFragmentBinding.inflate(inflater,container,false)
         val root: View = binding.root
         recyclerView = binding.recyclerView
+        println("Fragment onCreateView")
         return root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,6 +43,8 @@ class CharactersFragment: Fragment() {
         adapter = RecyclerAdapter(requireContext(), viewModel)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+        println("Fragment onViewCreated")
+        viewModel.getDBCharacters()
 
 
         viewModel.characters.observe(viewLifecycleOwner, Observer {
@@ -50,7 +53,7 @@ class CharactersFragment: Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
             println("Error " + it.toString())
         })
-        viewModel.getDBCharacters()
+
        // viewModel.getAllFish()
 //        viewModel.playlist.observe(viewLifecycleOwner, Observer<List<DevByteVideo>> { videos ->
 //            videos?.apply {

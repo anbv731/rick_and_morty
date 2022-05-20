@@ -16,7 +16,7 @@ class RecyclerAdapter(private val context: Context, private val viewModel: Chara
 
     fun setList(list: List<CharacterDomain>) {
         this.characters = list.toMutableList()
-//        notifyDataSetChanged()
+       notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
