@@ -1,13 +1,11 @@
-package com.example.characters
+package com.example.characters.presentation
 
 import android.content.Context
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.characters.databinding.ItemBinding
-import com.example.domain.CharacterDomain
+import com.example.characters.domain.CharacterDomain
 
 
 class RecyclerAdapter(private val context: Context, private val viewModel: CharactersViewModel) :

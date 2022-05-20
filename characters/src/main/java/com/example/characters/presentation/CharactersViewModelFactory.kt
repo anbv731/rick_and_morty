@@ -1,11 +1,11 @@
-package com.example.characters
+package com.example.characters.presentation
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.data.CharactersRepositoryImpl
-import com.example.domain.usecases.GetDBCharactersUseCase
-import com.example.domain.usecases.RefreshCharactersUseCase
+import com.example.characters.data.CharactersRepositoryImpl
+import com.example.characters.domain.usecases.GetDBCharactersUseCase
+import com.example.characters.domain.usecases.RefreshCharactersUseCase
 
 class CharactersViewModelFactory constructor(
     context: Context,

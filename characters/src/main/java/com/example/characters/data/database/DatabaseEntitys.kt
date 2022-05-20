@@ -1,13 +1,10 @@
-package com.example.data.database
+package com.example.characters.data.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.util.TableInfo
-import com.example.data.network.CharacterDto
-import com.example.domain.CharacterDomain
-import com.squareup.moshi.Json
+import com.example.characters.domain.CharacterDomain
 
 @Entity(tableName = "characters", indices = [Index(value = ["id"], unique = true)])
 data class CharacterModel(

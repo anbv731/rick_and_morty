@@ -1,6 +1,6 @@
-package com.example.data.network
+package com.example.characters.data.network
 
-import com.example.data.database.CharacterModel 
+import com.example.characters.data.database.CharacterModel
 import com.squareup.moshi.Json
 data class Response constructor(
     @Json(name="results")

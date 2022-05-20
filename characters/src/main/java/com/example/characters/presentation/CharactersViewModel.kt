@@ -1,16 +1,16 @@
-package com.example.characters
+package com.example.characters.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.CharacterDomain
-import com.example.domain.usecases.GetDBCharactersUseCase
-import com.example.domain.usecases.RefreshCharactersUseCase
+import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.usecases.GetDBCharactersUseCase
+import com.example.characters.domain.usecases.RefreshCharactersUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CharactersViewModel constructor(
+class CharactersViewModel @Inject constructor(
     private val refreshCharactersUseCase: RefreshCharactersUseCase,
     private val getDBCharactersUseCase: GetDBCharactersUseCase
 ) : ViewModel() {

@@ -1,17 +1,18 @@
-package com.example.data
+package com.example.characters.data
 
 
 import android.content.Context
-import com.example.data.database.asDomainModel
-import com.example.data.database.getDatabase
-import com.example.data.network.RetrofitClient
-import com.example.data.network.asModel
-import com.example.domain.CharacterDomain
-import com.example.domain.repository.CharactersRepository
+import com.example.characters.data.database.asDomainModel
+import com.example.characters.data.database.getDatabase
+import com.example.characters.data.network.RetrofitClient
+import com.example.characters.data.network.asModel
+import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.repository.CharactersRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CharactersRepositoryImpl(
+class CharactersRepositoryImpl @Inject constructor(
     private val context:Context,
 ) : CharactersRepository {
     private val database = getDatabase(context)

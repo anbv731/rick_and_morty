@@ -1,6 +1,5 @@
-package com.example.data.network
+package com.example.characters.data.network
 
-import com.example.domain.CharacterDomain
 import retrofit2.http.GET
 
 interface NetworkService  {
