@@ -10,6 +10,9 @@ interface CharactersDao {
     @Query("select * from characters")
     fun getCharacters():List<CharacterModel>
 
+    @Query("select * from characters WHERE name LIKE :request")
+    fun searchCharacters(request:String):List<CharacterModel>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(characters: List<CharacterModel>)
 }

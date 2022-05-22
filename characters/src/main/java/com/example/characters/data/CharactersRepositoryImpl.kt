@@ -30,4 +30,8 @@ class CharactersRepositoryImpl @Inject constructor(
         return database.charactersDao.getCharacters().asDomainModel()
     }
 
+    override suspend fun searchCharacters(request: String): List<CharacterDomain> {
+        return database.charactersDao.searchCharacters(request).asDomainModel()
+    }
+
 }

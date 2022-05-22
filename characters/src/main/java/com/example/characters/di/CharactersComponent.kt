@@ -6,14 +6,15 @@ import com.example.characters.presentation.CharactersFragment
 import com.example.characters.presentation.CharactersViewModel
 import dagger.BindsInstance
 import dagger.Component
+import dagger.Subcomponent
 import javax.inject.Singleton
 
 
-@Component(modules = [CharactersDomainModule::class,CharactersDataModule::class])
-public interface CharactersComponent {
+@Subcomponent(modules = [CharactersDomainModule::class])
+ interface CharactersComponent {
 
-   @Component.Factory
-   public interface Factory {
+ @Subcomponent.Factory
+   interface Factory {
        fun create(@BindsInstance context: Context): CharactersComponent
    }
 

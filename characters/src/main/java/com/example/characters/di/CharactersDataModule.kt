@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
-@Module
+
 class CharactersDataModule {
 //    @Binds
 //    fun bindCharactersRepository(charactersRepositoryImpl: CharactersRepository){

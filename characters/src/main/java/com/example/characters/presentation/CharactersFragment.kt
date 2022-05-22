@@ -1,5 +1,6 @@
 package com.example.characters.presentation
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.characters.databinding.CharactersFragmentBinding
-import com.example.characters.di.CharactersComponent
-import com.example.characters.di.DaggerCharactersComponent
-import com.example.characters.di.MyApplication
+import com.example.characters.di.CharactersComponentProvider
+
 import javax.inject.Inject
 
 class CharactersFragment: Fragment() {
@@ -33,7 +32,8 @@ class CharactersFragment: Fragment() {
     lateinit var adapter: RecyclerAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity?.application as MyApplication ).charactersComponent.inject(this)
+        (requireActivity().application as CharactersComponentProvider).provideCharactersComponent().inject(this)
+        //DaggerCharactersComponent.factory().create(requireActivity().application).inject(this)
 
     }
 

@@ -5,4 +5,5 @@ import com.example.characters.domain.CharacterDomain
 public interface CharactersRepository {
     suspend fun getDBCharacters(): List<CharacterDomain>
     suspend fun refreshCharacters()
+    suspend fun searchCharacters(request:String):List<CharacterDomain>
 }
