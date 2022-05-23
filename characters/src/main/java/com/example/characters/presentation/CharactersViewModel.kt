@@ -1,8 +1,6 @@
 package com.example.characters.presentation
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.characters.domain.CharacterDomain
 import com.example.characters.domain.usecases.GetDBCharactersUseCase
 import com.example.characters.domain.usecases.RefreshCharactersUseCase
@@ -12,8 +10,9 @@ import javax.inject.Inject
 
 class CharactersViewModel @Inject constructor(
     private val refreshCharactersUseCase: RefreshCharactersUseCase,
-    private val getDBCharactersUseCase: GetDBCharactersUseCase
+    private val getDBCharactersUseCase: GetDBCharactersUseCase,
 ) : ViewModel() {
+
     val characters = MutableLiveData<List<CharacterDomain>>()
     val errorMessage = MutableLiveData<String>()
 
@@ -22,10 +21,9 @@ class CharactersViewModel @Inject constructor(
     }
 
     private fun refreshDataFromRepository() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO)  {
             try {
                 refreshCharactersUseCase.execute()
-//                characters.postValue()
 
             } catch (e: Exception) {
                 errorMessage.postValue("refresh data from repository " + e.toString())
@@ -34,16 +32,17 @@ class CharactersViewModel @Inject constructor(
     }
 
     fun getDBCharacters() {
-        viewModelScope.launch(Dispatchers.IO) {  try {
-            characters.postValue(getDBCharactersUseCase.execute())
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    characters.postValue(getDBCharactersUseCase.execute())
 
-        } catch (e: Exception) {
-            errorMessage.postValue("getDBCharacter " + e.toString())
-        }
-        }
-
+                } catch (e: Exception) {
+                    errorMessage.postValue("getDBCharacter " + e.toString())
+                }
+            }
 
     }
+
 
 //    private fun refreshDataFromRepository() {
 //        viewModelScope.launch {

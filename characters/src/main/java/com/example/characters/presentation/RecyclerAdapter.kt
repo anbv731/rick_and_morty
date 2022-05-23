@@ -41,7 +41,7 @@ class RecyclerAdapter(private val context: Context, private val viewModel: Chara
     }
 
     class CharactersViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val textViewName = binding.name
-        val imageView = binding.image
+        val textViewName = binding.textViewName
+        val imageView = binding.imageViewId
     }
 }

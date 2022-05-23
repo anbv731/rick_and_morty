@@ -6,20 +6,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.characters.databinding.CharactersFragmentBinding
 import com.example.characters.di.CharactersComponentProvider
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
+import java.util.*
 
 import javax.inject.Inject
 
-class CharactersFragment: Fragment() {
+class CharactersFragment : Fragment() {
 
     @Inject
-    lateinit var viewModel:CharactersViewModel
-//    private val viewModel: CharactersViewModel by lazy {
+    lateinit var viewModel: CharactersViewModel
+
+    //    private val viewModel: CharactersViewModel by lazy {
 //        val activity = requireNotNull(this.activity) {
 //            "You can only access the viewModel after onActivityCreated()"
 //        }
@@ -28,25 +34,27 @@ class CharactersFragment: Fragment() {
 //    }
     lateinit var binding: CharactersFragmentBinding
     lateinit var recyclerView: RecyclerView
-    //lateinit var viewModel: CharactersViewModel
+    lateinit var searchView: SearchView
     lateinit var adapter: RecyclerAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as CharactersComponentProvider).provideCharactersComponent().inject(this)
-        //DaggerCharactersComponent.factory().create(requireActivity().application).inject(this)
-
+        (requireActivity().application as CharactersComponentProvider).provideCharactersComponent()
+            .inject(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= CharactersFragmentBinding.inflate(inflater,container,false)
+        binding = CharactersFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        recyclerView = binding.recyclerView
+        recyclerView = binding.recyclerCharacters
+        searchView = binding.searchViewId
+
         println("Fragment onCreateView")
         return root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        viewModel = ViewModelProvider(
@@ -58,20 +66,34 @@ class CharactersFragment: Fragment() {
         recyclerView.adapter = adapter
         println("Fragment onViewCreated")
         viewModel.getDBCharacters()
+        setViewModel(null)
 
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(text: String): Boolean {
+                setViewModel(text)
+                return false
+            }
 
-        viewModel.characters.observe(viewLifecycleOwner, Observer {
-            adapter.setList(it)
+            override fun onQueryTextSubmit(query: String): Boolean {
+                setViewModel(query)
+                return false
+            }
         })
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            println("Error " + it.toString())
-        })
+    }
 
-       // viewModel.getAllFish()
-//        viewModel.playlist.observe(viewLifecycleOwner, Observer<List<DevByteVideo>> { videos ->
-//            videos?.apply {
-//                viewModelAdapter?.videos = videos
-//            }
-//        })
+    private fun setViewModel(query: String?) {
+        if (query == null) {
+            viewModel.characters.observe(viewLifecycleOwner, Observer {
+                adapter.setList(it)
+            })
+            viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
+                println("Error " + it.toString())
+            })
+        }else{
+            viewModel.characters.observe(viewLifecycleOwner, Observer {
+                adapter.setList(it.filter { character->character.name.lowercase(Locale.getDefault())
+                    .contains(query.lowercase(Locale.getDefault())) })
+            })
+        }
     }
 }

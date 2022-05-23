@@ -3,8 +3,6 @@ package com.example.characters.data.database
 import androidx.room.*
 import android.content.Context
 
-
-
 @Database(entities = [CharacterModel::class], version = 1)
 abstract class CharactersDataBase : RoomDatabase() {
     abstract val charactersDao: CharactersDao
