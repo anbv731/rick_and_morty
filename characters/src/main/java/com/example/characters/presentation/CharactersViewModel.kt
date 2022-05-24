@@ -24,11 +24,15 @@ class CharactersViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO)  {
             try {
                 refreshCharactersUseCase.execute()
+                characters.postValue(getDBCharactersUseCase.execute())
 
             } catch (e: Exception) {
                 errorMessage.postValue("refresh data from repository " + e.toString())
             }
         }
+    }
+    private fun getIdCharacter(){
+
     }
 
     fun getDBCharacters() {

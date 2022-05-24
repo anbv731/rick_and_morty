@@ -2,6 +2,7 @@ package com.example.characters.di
 
 import android.content.Context
 import com.example.characters.domain.usecases.GetDBCharactersUseCase
+import com.example.characters.presentation.CharactersDetailFragment
 import com.example.characters.presentation.CharactersFragment
 import com.example.characters.presentation.CharactersViewModel
 import dagger.BindsInstance
@@ -18,5 +19,6 @@ import javax.inject.Singleton
        fun create(@BindsInstance context: Context): CharactersComponent
    }
 
-    fun inject(target: CharactersFragment)
+    fun injectCharactersFragment(target: CharactersFragment)
+    fun injectCharactersDetailFragment(target:CharactersDetailFragment)
 }

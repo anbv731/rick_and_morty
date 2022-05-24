@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tatiana/StudioProjects/RickandMorty/characters/src/main/res/drawable/ic_arrow_5.xml" value="0.2385" />
         <entry key="..\:/Users/tatiana/StudioProjects/RickandMorty/characters/src/main/res/layout/characters_fragment.xml" value="0.2957427536231884" />
-        <entry key="..\:/Users/tatiana/StudioProjects/RickandMorty/characters/src/main/res/layout/item.xml" value="0.264" />
+        <entry key="..\:/Users/tatiana/StudioProjects/RickandMorty/characters/src/main/res/layout/fragment_details.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/tatiana/StudioProjects/RickandMorty/characters/src/main/res/layout/fragment_list_item.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/tatiana/StudioProjects/RickandMorty/characters/src/main/res/layout/item.xml" value="0.6" />
       </map>
     </option>
   </component>

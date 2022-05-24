@@ -12,8 +12,8 @@ interface CharactersDao {
     @Query("select * from characters")
     fun getCharacters(): List<CharacterModel>
 
-    @Query("select * from characters WHERE name LIKE :request")
-    fun searchCharacters(request:String):List<CharacterModel>
+    @Query("select * from characters WHERE id LIKE :id")
+    fun getIdCharacters(id:Int):CharacterModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(characters: List<CharacterModel>)

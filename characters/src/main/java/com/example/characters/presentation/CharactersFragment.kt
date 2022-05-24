@@ -39,7 +39,7 @@ class CharactersFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity().application as CharactersComponentProvider).provideCharactersComponent()
-            .inject(this)
+            .injectCharactersFragment(this)
     }
 
     override fun onCreateView(
@@ -62,10 +62,9 @@ class CharactersFragment : Fragment() {
 //            CharactersViewModelFactory(requireContext())
 //        ).get(CharactersViewModel::class.java)
         adapter = RecyclerAdapter(requireContext(), viewModel)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
         println("Fragment onViewCreated")
-        viewModel.getDBCharacters()
+        //viewModel.getDBCharacters()
         setViewModel(null)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

@@ -10,13 +10,29 @@ data class CharacterDto constructor(
     @Json(name = "name")
     val name: String,
     @Json(name = "id")
-    val id: String
+    val id: Int,
+    @Json(name="status")
+    val status:String,
+    @Json(name="species")
+    val species:String,
+    @Json(name="gender")
+    val gender:String,
+    @Json(name="created")
+    val created:String,
+    @Json(name="image")
+    val image:String,
+
 )
 fun List<CharacterDto>.asModel(): List<CharacterModel> {
     return map {
         CharacterModel(
             name = it.name,
-            id = it.id
+            id = it.id,
+            status = it.status,
+            species = it.species,
+            created = it.created,
+            image = it.image,
+            gender = it.gender
         )
     }
 }

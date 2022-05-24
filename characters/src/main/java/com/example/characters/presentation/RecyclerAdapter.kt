@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.characters.databinding.ItemBinding
 import com.example.characters.domain.CharacterDomain
 
@@ -27,9 +28,11 @@ class RecyclerAdapter(private val context: Context, private val viewModel: Chara
         val character = characters[position]
 
         holder.textViewName.text = (character.name)
-//        Glide.with(context)
-//            .load(character.imageGallery?.src)
-//            .into(holder.imageView)
+        Glide.with(context)
+            .load(character.image)
+            .circleCrop()
+            .into(holder.imageView)
+        holder.cardView.setOnClickListener{println("Click card view "+ character.id)}
 //        holder.addButton.setOnClickListener {
 //            viewModel.saveToFavourite(fish)
 //            notifyDataSetChanged()
@@ -41,7 +44,8 @@ class RecyclerAdapter(private val context: Context, private val viewModel: Chara
     }
 
     class CharactersViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val textViewName = binding.textViewName
-        val imageView = binding.imageViewId
+        val textViewName = binding.nameTextView
+        val imageView = binding.imageView
+        val cardView=binding.CardViewId
     }
 }

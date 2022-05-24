@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 public interface CharactersRepository {
     suspend fun getDBCharacters(): List<CharacterDomain>
     suspend fun refreshCharacters()
-     fun searchCharacters():Flow<List<CharacterDomain>>
+     suspend fun getIdCharacters(id:Int):CharacterDomain
 }

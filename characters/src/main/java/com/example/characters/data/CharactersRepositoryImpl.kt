@@ -2,16 +2,14 @@ package com.example.characters.data
 
 
 import android.content.Context
-import androidx.paging.PagingData
 import com.example.characters.data.database.asDomainModel
+import com.example.characters.data.database.asListDomainModel
 import com.example.characters.data.database.getDatabase
 import com.example.characters.data.network.RetrofitClient
 import com.example.characters.data.network.asModel
 import com.example.characters.domain.CharacterDomain
 import com.example.characters.domain.repository.CharactersRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -29,11 +27,11 @@ class CharactersRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getDBCharacters(): List<CharacterDomain> {
-        return database.charactersDao.getCharacters().asDomainModel()
+        return database.charactersDao.getCharacters().asListDomainModel()
         }
 
-    override fun searchCharacters(): Flow<List<CharacterDomain>> {
-        TODO("Not yet implemented")
+    override suspend fun getIdCharacters(id:Int): CharacterDomain {
+        return database.charactersDao.getIdCharacters(id).asDomainModel()
     }
     }
 
