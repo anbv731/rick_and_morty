@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.model.CharacterDomain
 
 @Entity(tableName = "characters", indices = [Index(value = ["id"], unique = true)])
 data class CharacterModel(

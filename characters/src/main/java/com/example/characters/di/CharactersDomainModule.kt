@@ -1,6 +1,6 @@
 package com.example.characters.di
 
-import com.example.characters.data.CharactersRepositoryImpl
+import com.example.characters.data.repository.CharactersRepositoryImpl
 import com.example.characters.domain.repository.CharactersRepository
 import dagger.Binds
 import dagger.Module

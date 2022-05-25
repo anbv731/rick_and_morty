@@ -32,12 +32,12 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/low_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayoutDetail"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/cardview_radius"
+            app:cardElevation="@dimen/cardview_default_elevation"
             app:cardUseCompatPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,15 +46,16 @@
 
                 <ImageView
                     android:id="@+id/imageViewCharacterDetail"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="@dimen/zero"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:contentDescription="@string/image" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline5"
@@ -67,19 +68,19 @@
                     android:id="@+id/textViewDetailName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/mid_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
                     android:text="@string/name"
                     app:layout_constraintStart_toEndOf="@+id/guideline5"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewDetailNameData"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/mic_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
+                    android:layout_marginEnd="@dimen/mid_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textViewDetailName"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -88,19 +89,19 @@
                     android:id="@+id/textViewDetailGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/mid_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
                     android:text="@string/gender"
                     app:layout_constraintStart_toEndOf="@+id/guideline5"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailNameData" />
 
                 <TextView
                     android:id="@+id/textViewDetailGenderData"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/mic_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
+                    android:layout_marginEnd="@dimen/mid_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textViewDetailGender"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailNameData" />
@@ -109,19 +110,19 @@
                     android:id="@+id/textViewDetailStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/mid_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
                     android:text="@string/status"
                     app:layout_constraintStart_toEndOf="@+id/guideline5"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailGenderData" />
 
                 <TextView
                     android:id="@+id/textViewDetailStatusData"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/mic_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
+                    android:layout_marginEnd="@dimen/mid_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textViewDetailStatus"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailGenderData" />
@@ -130,19 +131,19 @@
                     android:id="@+id/textViewDetailSpecies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/mid_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
                     android:text="@string/species"
                     app:layout_constraintStart_toEndOf="@+id/guideline5"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailStatusData" />
 
                 <TextView
                     android:id="@+id/textViewDetailSpeciesData"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/mic_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
+                    android:layout_marginEnd="@dimen/mid_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textViewDetailSpecies"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailStatusData" />
@@ -152,20 +153,20 @@
                     android:id="@+id/textViewDetailCreated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/mid_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
                     android:text="@string/created"
                     app:layout_constraintStart_toEndOf="@+id/guideline5"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailSpeciesData" />
 
                 <TextView
                     android:id="@+id/textViewDetailCreatedData"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="@dimen/mic_margin"
+                    android:layout_marginTop="@dimen/mid_margin"
+                    android:layout_marginEnd="@dimen/mid_margin"
+                    android:layout_marginBottom="@dimen/mid_margin"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textViewDetailCreated"

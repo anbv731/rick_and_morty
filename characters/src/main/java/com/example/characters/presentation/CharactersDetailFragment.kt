@@ -8,26 +8,28 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.characters.databinding.FragmentDetailsBinding
 import com.example.characters.di.CharactersComponentProvider
-import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.model.CharacterDomain
 import com.google.android.material.appbar.MaterialToolbar
 import javax.inject.Inject
 
 class CharactersDetailFragment : Fragment() {
+    companion object {
+        const val ARGUMENT: String = "characterId"
+    }
+
     @Inject
-    lateinit var viewModel: CharactersViewModel
-    lateinit var binding: FragmentDetailsBinding
-    lateinit var textViewName: TextView
-    lateinit var textViewStatus: TextView
-    lateinit var textViewGender: TextView
-    lateinit var textViewCreated: TextView
-    lateinit var textViewSpecies: TextView
-    lateinit var image: ImageView
-    lateinit var appBar: MaterialToolbar
-    var requestId = 1
+   lateinit var viewModel: CharactersViewModel
+    private lateinit var binding: FragmentDetailsBinding
+    private lateinit var textViewName: TextView
+    private lateinit var textViewStatus: TextView
+    private lateinit var textViewGender: TextView
+    private lateinit var textViewCreated: TextView
+    private lateinit var textViewSpecies: TextView
+    private lateinit var image: ImageView
+    private lateinit var appBar: MaterialToolbar
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,21 +54,20 @@ class CharactersDetailFragment : Fragment() {
         appBar = binding.topAppBarDetail
         appBar.setNavigationOnClickListener {
             requireActivity().onBackPressed()
-            true
         }
-
-        println("Fragment onCreateView")
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestId = arguments?.getString("characterId")!!.toInt()
-        viewModel.characters.observe(
-            viewLifecycleOwner,
-            Observer {
+        val requestId: Int? = arguments?.getString(ARGUMENT)?.toInt()
+        if (requestId != null) {
+            viewModel.characters.observe(
+                viewLifecycleOwner
+            ) {
                 containView(it.first { character -> character.id == requestId })
-            })
+            }
+        }
 
     }
 

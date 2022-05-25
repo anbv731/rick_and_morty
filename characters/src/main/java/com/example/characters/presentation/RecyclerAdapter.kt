@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.characters.databinding.ItemBinding
-import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.model.CharacterDomain
 
 
 class RecyclerAdapter(
     private val context: Context,
-    private val viewModel: CharactersViewModel,
     private val toItem: (id: Int) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerAdapter.CharactersViewHolder>() {
@@ -37,28 +36,15 @@ class RecyclerAdapter(
             .circleCrop()
             .into(holder.imageView)
         holder.cardView.setOnClickListener {
-            println("Click card view " + character.id)
             toItem.invoke(character.id)
-
-//            val navHostFragment =
-//                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//            val navController = navHostFragment.navController
-            //val action =CharactersFragmentDirections
-//                SpecifyAmountFragmentDirections
-//                    .actionSpecifyAmountFragmentToConfirmationFragment()
-//            view.findNavController().navigate(action)
         }
-//        holder.addButton.setOnClickListener {
-//            viewModel.saveToFavourite(fish)
-//            notifyDataSetChanged()
-//        }
     }
 
     override fun getItemCount(): Int {
         return characters.size
     }
 
-    class CharactersViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CharactersViewHolder(binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val textViewName = binding.nameTextView
         val imageView = binding.imageView
         val cardView = binding.CardViewId

@@ -3,7 +3,7 @@ package com.example.characters.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.model.CharacterDomain
 import com.example.characters.domain.usecases.GetDBCharactersUseCase
 import com.example.characters.domain.usecases.RefreshCharactersUseCase
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +29,7 @@ class CharactersViewModel @Inject constructor(
                 characters.postValue(getDBCharactersUseCase.execute())
 
             } catch (e: Exception) {
-                errorMessage.postValue("refresh data from repository " + e.toString())
+                errorMessage.postValue( e.toString())
 
             }
         }

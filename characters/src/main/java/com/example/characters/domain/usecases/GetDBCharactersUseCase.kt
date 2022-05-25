@@ -1,6 +1,6 @@
 package com.example.characters.domain.usecases
 
-import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.model.CharacterDomain
 import com.example.characters.domain.repository.CharactersRepository
 import javax.inject.Inject
 

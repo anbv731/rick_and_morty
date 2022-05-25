@@ -25,7 +25,8 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:contentDescription="@string/image" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -49,7 +50,8 @@
                 app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintStart_toEndOf="@+id/nameTextView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_vector" />
+                app:srcCompat="@drawable/ic_vector"
+                android:contentDescription="@string/image" />
 
             <View
                 android:id="@+id/delimiterView"

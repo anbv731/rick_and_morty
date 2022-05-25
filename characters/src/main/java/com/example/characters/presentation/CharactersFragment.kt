@@ -11,16 +11,17 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.characters.databinding.CharactersFragmentBinding
 import com.example.characters.di.CharactersComponentProvider
 import java.util.*
-
 import javax.inject.Inject
 
 class CharactersFragment : Fragment() {
+    companion object {
+        const val URI: String = "android-app://characters/"
+    }
 
     @Inject
     lateinit var viewModel: CharactersViewModel
@@ -49,7 +50,7 @@ class CharactersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RecyclerAdapter(requireContext(), viewModel) { id -> toItem(id) }
+        adapter = RecyclerAdapter(requireContext()) { id -> toItem(id) }
         recyclerView.adapter = adapter
         setContent(null)
 
@@ -68,29 +69,28 @@ class CharactersFragment : Fragment() {
 
     private fun setContent(query: String?) {
         if (query == null) {
-            viewModel.characters.observe(viewLifecycleOwner, Observer {
+            viewModel.characters.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     adapter.setList(it)
-                    progressBar.setVisibility(View.INVISIBLE)
+                    progressBar.visibility = View.INVISIBLE
                 }
-            })
-            viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-                progressBar.setVisibility(View.INVISIBLE)
-                println("Error $it")
-                Toast.makeText(requireContext(), "Error $it", LENGTH_LONG).show()
-            })
+            }
+            viewModel.errorMessage.observe(viewLifecycleOwner) {
+                progressBar.visibility = View.INVISIBLE
+                Toast.makeText(requireContext(), it, LENGTH_LONG).show()
+            }
         } else {
-            viewModel.characters.observe(viewLifecycleOwner, Observer {
+            viewModel.characters.observe(viewLifecycleOwner) {
                 adapter.setList(it.filter { character ->
                     character.name.lowercase(Locale.getDefault())
                         .contains(query.lowercase(Locale.getDefault()))
                 })
-            })
+            }
         }
     }
 
     private fun toItem(id: Int) {
-        val uri = Uri.parse("android-app://characters/${id}")
+        val uri = Uri.parse("${URI}${id}")
         findNavController().navigate(uri)
     }
 

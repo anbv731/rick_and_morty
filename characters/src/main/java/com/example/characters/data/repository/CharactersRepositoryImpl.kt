@@ -1,4 +1,4 @@
-package com.example.characters.data
+package com.example.characters.data.repository
 
 
 import android.content.Context
@@ -6,7 +6,7 @@ import com.example.characters.data.database.asListDomainModel
 import com.example.characters.data.database.getDatabase
 import com.example.characters.data.network.RetrofitClient
 import com.example.characters.data.network.asModel
-import com.example.characters.domain.CharacterDomain
+import com.example.characters.domain.model.CharacterDomain
 import com.example.characters.domain.repository.CharactersRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
