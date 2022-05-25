@@ -1,7 +1,5 @@
 package com.example.characters.domain
 
-import com.squareup.moshi.Json
-
 data class CharacterDomain(
     val id: Int,
     val name: String,
@@ -9,4 +7,5 @@ data class CharacterDomain(
     val species: String,
     val gender: String,
     val created: String,
-    val image: String)
+    val image: String
+)

@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.characters.domain.CharacterDomain
-import com.squareup.moshi.Json
 
 @Entity(tableName = "characters", indices = [Index(value = ["id"], unique = true)])
 data class CharacterModel(
@@ -39,12 +38,15 @@ fun List<CharacterModel>.asListDomainModel(): List<CharacterDomain> {
         )
     }
 }
-fun CharacterModel.asDomainModel():CharacterDomain{
-    return CharacterDomain(name = this.name,
+
+fun CharacterModel.asDomainModel(): CharacterDomain {
+    return CharacterDomain(
+        name = this.name,
         id = this.id,
         status = this.status,
         species = this.species,
         created = this.created,
         image = this.image,
-        gender = this.gender)
+        gender = this.gender
+    )
 }
