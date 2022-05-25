@@ -2,6 +2,7 @@ package com.example.characters.presentation
 
 import android.app.Application
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.characters.databinding.CharactersFragmentBinding
@@ -61,11 +64,13 @@ class CharactersFragment : Fragment() {
 //            this,
 //            CharactersViewModelFactory(requireContext())
 //        ).get(CharactersViewModel::class.java)
-        adapter = RecyclerAdapter(requireContext(), viewModel)
+        adapter = RecyclerAdapter(requireContext(), viewModel, {id -> toItem(id)})
         recyclerView.adapter = adapter
         println("Fragment onViewCreated")
         //viewModel.getDBCharacters()
         setViewModel(null)
+
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(text: String): Boolean {
@@ -95,4 +100,9 @@ class CharactersFragment : Fragment() {
             })
         }
     }
+    fun toItem(id:Int){
+        val uri= Uri.parse("android-app://characters/${id}")
+        findNavController().navigate(uri)
+    }
+
 }

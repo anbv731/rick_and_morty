@@ -2,14 +2,17 @@ package com.example.characters.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.characters.databinding.ItemBinding
 import com.example.characters.domain.CharacterDomain
+import javax.security.auth.callback.Callback
 
 
-class RecyclerAdapter(private val context: Context, private val viewModel: CharactersViewModel) :
+class RecyclerAdapter(private val context: Context, private val viewModel: CharactersViewModel,private val toItem:(id: Int) -> Unit) :
     RecyclerView.Adapter<RecyclerAdapter.CharactersViewHolder>() {
     var characters = mutableListOf<CharacterDomain>()
 
@@ -32,7 +35,17 @@ class RecyclerAdapter(private val context: Context, private val viewModel: Chara
             .load(character.image)
             .circleCrop()
             .into(holder.imageView)
-        holder.cardView.setOnClickListener{println("Click card view "+ character.id)}
+        holder.cardView.setOnClickListener{println("Click card view "+ character.id)
+toItem.invoke(character.id)
+
+//            val navHostFragment =
+//                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//            val navController = navHostFragment.navController
+           //val action =CharactersFragmentDirections
+//                SpecifyAmountFragmentDirections
+//                    .actionSpecifyAmountFragmentToConfirmationFragment()
+//            view.findNavController().navigate(action)
+        }
 //        holder.addButton.setOnClickListener {
 //            viewModel.saveToFavourite(fish)
 //            notifyDataSetChanged()

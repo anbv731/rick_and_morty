@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.characters.databinding.FragmentDetailsBinding
 import com.example.characters.di.CharactersComponentProvider
 import com.example.characters.domain.CharacterDomain
+import com.google.android.material.appbar.MaterialToolbar
 import javax.inject.Inject
 
 class CharactersDetailFragment : Fragment() {
@@ -26,6 +27,7 @@ class CharactersDetailFragment : Fragment() {
     lateinit var textViewSpecies: TextView
     lateinit var character: CharacterDomain
     lateinit var image: ImageView
+    lateinit var appBar: MaterialToolbar
     var requestId = 1
 
     override fun onAttach(context: Context) {
@@ -39,6 +41,7 @@ class CharactersDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         textViewCreated = binding.textViewDetailCreatedData
@@ -47,6 +50,9 @@ class CharactersDetailFragment : Fragment() {
         textViewSpecies = binding.textViewDetailSpeciesData
         textViewStatus = binding.textViewDetailStatusData
         image = binding.imageViewCharacterDetail
+        appBar=binding.topAppBarDetail
+        appBar.setNavigationOnClickListener { requireActivity().onBackPressed()
+            true }
 
         println("Fragment onCreateView")
         return root
@@ -54,6 +60,7 @@ class CharactersDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requestId=arguments?.getString("characterId")!!.toInt()
         viewModel.characters.observe(
             viewLifecycleOwner,
             Observer { containView( it.first { character -> character.id == requestId }) })
@@ -62,6 +69,7 @@ class CharactersDetailFragment : Fragment() {
 
     private fun containView(character:CharacterDomain) {
         textViewName.text = character.name
+        appBar.title=character.name
         textViewStatus.text = character.status
         textViewSpecies.text = character.species
         textViewGender.text = character.gender

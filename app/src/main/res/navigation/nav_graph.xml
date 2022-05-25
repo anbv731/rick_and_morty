@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/charactersFragment">
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.example.characters.presentation.CharactersFragment"
+        android:label="CharactersFragment"
+        tools:layout="@layout/characters_fragment">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/charactersDetailFragment"
+        android:name="com.example.characters.presentation.CharactersDetailFragment"
+        android:label="CharactersDetailFragment"
+        tools:layout="@layout/fragment_details">
+        <argument android:name="characterId" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="android-app://characters/{characterId}" />
+
+    </fragment>
+
+</navigation>
